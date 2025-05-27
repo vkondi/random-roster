@@ -9,11 +9,9 @@ import {
   Box,
   Container,
   Typography,
-  Button,
   Card,
   CardContent,
   Paper,
-  Grid,
 } from '@mui/material';
 import { 
   Shuffle as ShuffleIcon, 

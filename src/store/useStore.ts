@@ -14,7 +14,7 @@ interface Store {
 
 export const useStore = create<Store>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       groups: [],
       
       addGroup: (name: string) => {

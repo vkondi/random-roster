@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { TeamMember } from '@/types';
 import { MemberAvatar } from './MemberAvatar';
-import { Box, Grid as MuiGrid, Paper, Typography, IconButton } from '@mui/material';
+import { Box, Paper, Typography, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 
 interface MemberListProps {
