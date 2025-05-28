@@ -23,6 +23,8 @@ const navigation = [
   { name: 'Groups', href: '/groups' },
   { name: 'Shuffle', href: '/shuffle' },
   { name: 'Sort', href: '/sort' },
+  { name: 'Pairs', href: '/pairs' },
+  { name: 'Random', href: '/random' },
 ];
 
 export function Navigation() {

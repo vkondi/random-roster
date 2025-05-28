@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, FormEvent, ChangeEvent } from 'react';
 import { motion } from 'framer-motion';
 import { useStore } from '@/store/useStore';
 import { MemberList } from '@/components/MemberList';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { 
   Box,
   Container,
@@ -16,19 +17,22 @@ import {
   Paper,
 } from '@mui/material';
 import { Add as AddIcon, Delete as DeleteIcon, Group as GroupIcon } from '@mui/icons-material';
+import { TeamGroup } from '@/types';
 
 export default function GroupsPage() {
   const [newGroupName, setNewGroupName] = useState('');
   const [newMemberName, setNewMemberName] = useState('');
   const [selectedGroup, setSelectedGroup] = useState<string>('');
   
-  const groups = useStore((state) => state.groups);
+  const groups = useStore<TeamGroup[]>((state) => state.groups);
   const addGroup = useStore((state) => state.addGroup);
   const removeGroup = useStore((state) => state.removeGroup);
   const addMemberToGroup = useStore((state) => state.addMemberToGroup);
   const removeMemberFromGroup = useStore((state) => state.removeMemberFromGroup);
+  const editMemberName = useStore((state) => state.editMemberName);
+  const toggleMemberExclusion = useStore((state) => state.toggleMemberExclusion);
 
-  const handleAddGroup = (e: React.FormEvent) => {
+  const handleAddGroup = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (newGroupName.trim()) {
       addGroup(newGroupName.trim());
@@ -36,7 +40,7 @@ export default function GroupsPage() {
     }
   };
 
-  const handleAddMember = (e: React.FormEvent) => {
+  const handleAddMember = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (selectedGroup && newMemberName.trim()) {
       addMemberToGroup(selectedGroup, newMemberName.trim());
@@ -57,23 +61,26 @@ export default function GroupsPage() {
                 Create and manage your team groups. Add members and organize them efficiently.
               </Typography>
             </Box>
-            <Box component="form" onSubmit={handleAddGroup} sx={{ display: 'flex', gap: 2, minWidth: 300 }}>
-              <TextField
-                size="small"
-                fullWidth
-                value={newGroupName}
-                onChange={(e) => setNewGroupName(e.target.value)}
-                placeholder="Enter group name"
-                sx={{ flex: 1 }}
-              />
-              <Button
-                type="submit"
-                variant="contained"
-                startIcon={<AddIcon />}
-                disabled={!newGroupName.trim()}
-              >
-                Add Group
-              </Button>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <Box component="form" onSubmit={handleAddGroup} sx={{ display: 'flex', gap: 2, minWidth: 300 }}>
+                <TextField
+                  size="small"
+                  fullWidth
+                  value={newGroupName}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => setNewGroupName(e.target.value)}
+                  placeholder="Enter group name"
+                  sx={{ flex: 1 }}
+                />
+                <Button
+                  type="submit"
+                  variant="contained"
+                  startIcon={<AddIcon />}
+                  disabled={!newGroupName.trim()}
+                >
+                  Add Group
+                </Button>
+              </Box>
+              <ThemeToggle />
             </Box>
           </Box>
         </Paper>
@@ -120,7 +127,7 @@ export default function GroupsPage() {
           </motion.div>
         ) : (
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-            {groups.map((group, index) => (
+            {groups.map((group: TeamGroup, index: number) => (
               <motion.div
                 key={group.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -168,7 +175,7 @@ export default function GroupsPage() {
                         size="small"
                         fullWidth
                         value={newMemberName}
-                        onChange={(e) => {
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => {
                           setSelectedGroup(group.id);
                           setNewMemberName(e.target.value);
                         }}
@@ -179,7 +186,7 @@ export default function GroupsPage() {
                         variant="contained"
                         disabled={selectedGroup !== group.id || !newMemberName.trim()}
                       >
-                        Add Member
+                        Add
                       </Button>
                     </Box>
 
@@ -202,6 +209,8 @@ export default function GroupsPage() {
                       <MemberList
                         members={group.members}
                         onRemove={(memberId) => removeMemberFromGroup(group.id, memberId)}
+                        onEdit={(memberId, newName) => editMemberName(group.id, memberId, newName)}
+                        onToggleExclusion={(memberId) => toggleMemberExclusion(group.id, memberId)}
                       />
                     )}
                   </CardContent>

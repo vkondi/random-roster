@@ -2,6 +2,7 @@ export interface TeamMember {
   id: string;
   name: string;
   avatarSeed: string;
+  excluded?: boolean;
 }
 
 export interface TeamGroup {
@@ -17,4 +18,12 @@ export interface ShuffleResult {
 
 export interface SortResult {
   members: TeamMember[];
+}
+
+export interface PairResult {
+  pairs: [TeamMember, TeamMember?][];
+}
+
+export interface RandomMemberResult {
+  selectedMembers: TeamMember[];
 } 

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useStore } from '@/store/useStore';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { 
   Box,
   Container,
@@ -18,6 +19,7 @@ import {
   Sort as SortIcon, 
   Group as GroupIcon,
   ArrowForward as ArrowForwardIcon,
+  Casino as CasinoIcon,
 } from '@mui/icons-material';
 
 export default function Home() {
@@ -25,8 +27,8 @@ export default function Home() {
   const groups = useStore((state) => state.groups);
 
   useEffect(() => {
-    // If there are no groups, redirect to groups page
-    if (groups.length === 0) {
+    // Only redirect to groups page if there are no groups and we're not coming from there
+    if (groups.length === 0 && window.location.pathname === '/') {
       router.push('/groups');
     }
   }, [groups, router]);
@@ -44,6 +46,20 @@ export default function Home() {
       description: 'Sort team members randomly for fair and unbiased ordering.',
       icon: SortIcon,
       href: '/sort',
+      color: 'primary.main',
+    },
+    {
+      name: 'Create Team Pairs',
+      description: 'Create random pairs for buddy systems and pair programming.',
+      icon: GroupIcon,
+      href: '/pairs',
+      color: 'primary.main',
+    },
+    {
+      name: 'Select Random Members',
+      description: 'Select random members for tasks and presentations.',
+      icon: CasinoIcon,
+      href: '/random',
       color: 'primary.main',
     },
     {
@@ -72,6 +88,7 @@ export default function Home() {
                 Simplify team organization with our powerful tools
               </Typography>
             </Box>
+            <ThemeToggle />
           </Box>
         </Paper>
       </Box>
