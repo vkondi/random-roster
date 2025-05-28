@@ -69,6 +69,13 @@ export default function Home() {
       href: '/groups',
       color: 'primary.main',
     },
+    {
+      name: 'All-in-One',
+      description: 'Access all features in one place - shuffle, sort, pair, or select random members.',
+      icon: ShuffleIcon,
+      href: '/all-in-one',
+      color: 'primary.main',
+    },
   ];
 
   if (groups.length === 0) {

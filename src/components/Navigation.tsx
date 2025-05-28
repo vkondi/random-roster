@@ -25,6 +25,7 @@ const navigation = [
   { name: 'Sort', href: '/sort' },
   { name: 'Pairs', href: '/pairs' },
   { name: 'Random', href: '/random' },
+  { name: 'All-in-One', href: '/all-in-one' },
 ];
 
 export function Navigation() {
