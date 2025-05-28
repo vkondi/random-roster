@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useStore } from '@/store/useStore';
 import { MemberList } from '@/components/MemberList';
-import { ThemeToggle } from '@/components/ThemeToggle';
 import { 
   Box,
   Container,
@@ -129,7 +128,7 @@ export default function AllInOnePage() {
               </Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <ThemeToggle />
+              {/* Remove ThemeToggle */}
             </Box>
           </Box>
         </Paper>

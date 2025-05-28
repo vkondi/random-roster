@@ -1,11 +1,10 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useStore } from '@/store/useStore';
-import { ThemeToggle } from '@/components/ThemeToggle';
 import { 
   Box,
   Container,
@@ -21,65 +20,76 @@ import {
   ArrowForward as ArrowForwardIcon,
   Casino as CasinoIcon,
 } from '@mui/icons-material';
+import { SvgIconComponent } from '@mui/icons-material';
+
+interface Feature {
+  name: string;
+  description: string;
+  icon: SvgIconComponent;
+  href: string;
+  color: string;
+}
+
+const features: Feature[] = [
+  {
+    name: 'Team Shuffler',
+    description: 'Create random groups by splitting team members equally.',
+    icon: ShuffleIcon,
+    href: '/shuffle',
+    color: 'primary.main',
+  },
+  {
+    name: 'Team Sorting',
+    description: 'Sort team members randomly for fair and unbiased ordering.',
+    icon: SortIcon,
+    href: '/sort',
+    color: 'primary.main',
+  },
+  {
+    name: 'Create Team Pairs',
+    description: 'Create random pairs for buddy systems and pair programming.',
+    icon: GroupIcon,
+    href: '/pairs',
+    color: 'primary.main',
+  },
+  {
+    name: 'Select Random Members',
+    description: 'Select random members for tasks and presentations.',
+    icon: CasinoIcon,
+    href: '/random',
+    color: 'primary.main',
+  },
+  {
+    name: 'Team Groups',
+    description: 'Create and manage custom groups of team members.',
+    icon: GroupIcon,
+    href: '/groups',
+    color: 'primary.main',
+  },
+  {
+    name: 'All-in-One',
+    description: 'Access all features in one place - shuffle, sort, pair, or select random members.',
+    icon: ShuffleIcon,
+    href: '/all-in-one',
+    color: 'primary.main',
+  },
+];
 
 export default function Home() {
   const router = useRouter();
+  const pathname = usePathname();
   const groups = useStore((state) => state.groups);
 
   useEffect(() => {
-    // Only redirect to groups page if there are no groups and we're not coming from there
-    if (groups.length === 0 && window.location.pathname === '/') {
+    // Only redirect if we're on the home page and there are no groups
+    if (pathname === '/' && groups.length === 0) {
       router.push('/groups');
     }
-  }, [groups, router]);
+  }, [groups.length, router, pathname]);
 
-  const features = [
-    {
-      name: 'Team Shuffler',
-      description: 'Create random groups by splitting team members equally.',
-      icon: ShuffleIcon,
-      href: '/shuffle',
-      color: 'primary.main',
-    },
-    {
-      name: 'Team Sorting',
-      description: 'Sort team members randomly for fair and unbiased ordering.',
-      icon: SortIcon,
-      href: '/sort',
-      color: 'primary.main',
-    },
-    {
-      name: 'Create Team Pairs',
-      description: 'Create random pairs for buddy systems and pair programming.',
-      icon: GroupIcon,
-      href: '/pairs',
-      color: 'primary.main',
-    },
-    {
-      name: 'Select Random Members',
-      description: 'Select random members for tasks and presentations.',
-      icon: CasinoIcon,
-      href: '/random',
-      color: 'primary.main',
-    },
-    {
-      name: 'Team Groups',
-      description: 'Create and manage custom groups of team members.',
-      icon: GroupIcon,
-      href: '/groups',
-      color: 'primary.main',
-    },
-    {
-      name: 'All-in-One',
-      description: 'Access all features in one place - shuffle, sort, pair, or select random members.',
-      icon: ShuffleIcon,
-      href: '/all-in-one',
-      color: 'primary.main',
-    },
-  ];
-
-  if (groups.length === 0) {
-    return null; // Return null as we're redirecting
+  // Show loading state while redirecting
+  if (pathname === '/' && groups.length === 0) {
+    return null;
   }
 
   return (
@@ -95,7 +105,6 @@ export default function Home() {
                 Simplify team organization with our powerful tools
               </Typography>
             </Box>
-            <ThemeToggle />
           </Box>
         </Paper>
       </Box>

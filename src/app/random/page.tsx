@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useStore } from '@/store/useStore';
-import { ThemeToggle } from '@/components/ThemeToggle';
+import { MemberList } from '@/components/MemberList';
 import { 
   Box,
   Container,
@@ -52,7 +52,7 @@ export default function RandomPage() {
               </Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <ThemeToggle />
+              {/* Remove ThemeToggle */}
             </Box>
           </Box>
         </Paper>
