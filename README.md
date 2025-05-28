@@ -16,13 +16,31 @@ A modern web application for managing, shuffling, and sorting team members built
    - Easy group selection
    - Modern Material Design
 
-3. **Team Groups**
+3. **Team Pairs**
+   - Create random pairs for buddy systems and pair programming
+   - Handle odd numbers gracefully (last person may be alone)
+   - Exclude marked members from pairing
+   - Visual representation with avatars
+
+4. **Random Member Selection**
+   - Select specified number of random members
+   - Perfect for presentations and tasks
+   - Number input constrained to group size
+   - Exclude marked members from selection
+
+5. **Team Groups**
    - Create and manage custom groups
    - Add/remove team members
    - Unique avatar for each member
    - Local storage persistence
    - Support for 2-100 members per group
    - Intuitive group management interface
+
+6. **All-in-One**
+   - Access all features in one unified interface
+   - Quick switching between different tools
+   - Consistent experience across features
+   - Streamlined workflow
 
 ## Tech Stack
 
@@ -65,16 +83,31 @@ A modern web application for managing, shuffling, and sorting team members built
 
 2. **Shuffling Teams**
    - Go to the Team Shuffler page
-   - Select a group from the dropdown
    - Choose the number of teams from available options
    - Click "Shuffle Teams" to see the results
    - Teams are displayed in beautiful animated cards
 
 3. **Sorting Members**
    - Visit the Team Sorting page
-   - Select a group from the dropdown
    - Click "Sort Members" to randomize the order
    - View sorted members in a modern grid layout
+
+4. **Creating Pairs**
+   - Navigate to the Team Pairs page
+   - Click "Create Pairs" to generate random pairs
+   - View pairs with member avatars and names
+
+5. **Selecting Random Members**
+   - Go to the Random Members page
+   - Set the number of members to select
+   - Click "Select Members" to choose random participants
+   - View selected members with their avatars
+
+6. **Using All-in-One**
+   - Access the All-in-One page for all features
+   - Switch between different tools without changing pages
+   - Maintain consistent workflow and experience
+   - View results in a unified interface
 
 ## Features in Detail
 
@@ -84,6 +117,7 @@ A modern web application for managing, shuffling, and sorting team members built
 - Smooth animations and transitions
 - Consistent theme across all pages
 - Intuitive navigation and user flow
+- Personalized avatars for all members
 
 ### Smart Team Management
 - Automatic calculation of possible team combinations
