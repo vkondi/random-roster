@@ -24,9 +24,31 @@ import {
   Group as GroupIcon,
   Casino as CasinoIcon,
 } from '@mui/icons-material';
-import { TeamGroup, TeamMember } from '@/types';
+import { TeamMember } from '@/types';
 
-type ActivityType = 'shuffle' | 'sort' | 'pairs' | 'random' | 'groups';
+type ActivityType = 'shuffle' | 'sort' | 'pairs' | 'random';
+
+type ShuffleResult = {
+  type: 'shuffle';
+  data: TeamMember[][];
+}
+
+type SortResult = {
+  type: 'sort';
+  data: TeamMember[];
+}
+
+type PairsResult = {
+  type: 'pairs';
+  data: [TeamMember, TeamMember?][];
+}
+
+type RandomResult = {
+  type: 'random';
+  data: TeamMember[];
+}
+
+type ActivityResult = ShuffleResult | SortResult | PairsResult | RandomResult;
 
 interface ActivityOption {
   value: ActivityType;
@@ -69,7 +91,7 @@ export default function AllInOnePage() {
   const [selectedGroupId, setSelectedGroupId] = useState<string>('');
   const [selectedActivity, setSelectedActivity] = useState<ActivityType | ''>('');
   const [numberInput, setNumberInput] = useState<number>(2);
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<ActivityResult | null>(null);
   
   const groups = useStore((state) => state.groups);
   const shuffleTeam = useStore((state) => state.shuffleTeam);
@@ -83,22 +105,24 @@ export default function AllInOnePage() {
   const handleAction = async () => {
     if (!selectedGroup || !selectedActivity) return;
 
-    let actionResult;
     switch (selectedActivity) {
       case 'shuffle':
-        actionResult = shuffleTeam(selectedGroup.members, numberInput);
+        const shuffleResult = shuffleTeam(selectedGroup.members, numberInput);
+        setResult({ type: 'shuffle', data: shuffleResult });
         break;
       case 'sort':
-        actionResult = sortTeamMembers(selectedGroup.members);
+        const sortResult = sortTeamMembers(selectedGroup.members);
+        setResult({ type: 'sort', data: sortResult });
         break;
       case 'pairs':
-        actionResult = createPairs(selectedGroup.members);
+        const pairsResult = createPairs(selectedGroup.members);
+        setResult({ type: 'pairs', data: pairsResult });
         break;
       case 'random':
-        actionResult = selectRandomMembers(selectedGroup.members, numberInput);
+        const randomResult = selectRandomMembers(selectedGroup.members, numberInput);
+        setResult({ type: 'random', data: randomResult });
         break;
     }
-    setResult({ type: selectedActivity, data: actionResult });
   };
 
   const getMaxNumber = () => {
@@ -309,7 +333,7 @@ export default function AllInOnePage() {
                           <Typography variant="h6">Pair {index + 1}</Typography>
                         </Box>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                          {pair.map((member, memberIndex) => (
+                          {pair.map((member) => (
                             member && (
                               <Paper
                                 key={member.id}

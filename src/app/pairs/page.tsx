@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useStore } from '@/store/useStore';
-import { MemberList } from '@/components/MemberList';
 import { 
   Box,
   Container,
@@ -121,7 +120,7 @@ export default function PairsPage() {
                       </Typography>
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                      {pair.map((member, memberIndex) => (
+                      {pair.map((member) => (
                         member && (
                           <Paper
                             key={member.id}

@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useStore } from '@/store/useStore';
-import { MemberList } from '@/components/MemberList';
 import { 
   Box,
   Container,
