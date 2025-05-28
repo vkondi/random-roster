@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useStore } from '@/store/useStore';
+import { MemberAvatar } from '@/components/MemberAvatar';
 import { 
   Box,
   Container,
@@ -17,7 +18,7 @@ import {
   InputLabel,
   TextField,
 } from '@mui/material';
-import { Casino as CasinoIcon, Person as PersonIcon } from '@mui/icons-material';
+import { Casino as CasinoIcon } from '@mui/icons-material';
 import { TeamGroup, TeamMember } from '@/types';
 
 export default function RandomPage() {
@@ -29,6 +30,13 @@ export default function RandomPage() {
   const selectRandomMembers = useStore((state) => state.selectRandomMembers);
   
   const selectedGroup = groups.find(group => group.id === selectedGroupId);
+
+  // Select first group by default
+  useEffect(() => {
+    if (groups.length > 0 && !selectedGroupId) {
+      setSelectedGroupId(groups[0].id);
+    }
+  }, [groups, selectedGroupId]);
 
   const handleSelectMembers = () => {
     if (selectedGroup) {
@@ -112,18 +120,8 @@ export default function RandomPage() {
                 <Card>
                   <CardContent sx={{ p: 3 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                      <Box
-                        sx={{
-                          width: 40,
-                          height: 40,
-                          borderRadius: '50%',
-                          bgcolor: 'primary.50',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                        }}
-                      >
-                        <PersonIcon sx={{ fontSize: 20, color: 'primary.main' }} />
+                      <Box sx={{ flexShrink: 0 }}>
+                        <MemberAvatar seed={member.avatarSeed} size={40} />
                       </Box>
                       <Box>
                         <Typography variant="h6" gutterBottom={false}>

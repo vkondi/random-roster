@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useStore } from '@/store/useStore';
 import { MemberList } from '@/components/MemberList';
+import { MemberAvatar } from '@/components/MemberAvatar';
 import { 
   Box,
   Container,
@@ -101,6 +102,13 @@ export default function AllInOnePage() {
   
   const selectedGroup = groups.find(group => group.id === selectedGroupId);
   const selectedActivityOption = activities.find(a => a.value === selectedActivity);
+
+  // Select first group by default
+  useEffect(() => {
+    if (groups.length > 0 && !selectedGroupId) {
+      setSelectedGroupId(groups[0].id);
+    }
+  }, [groups, selectedGroupId]);
 
   const handleAction = async () => {
     if (!selectedGroup || !selectedActivity) return;
@@ -345,6 +353,9 @@ export default function AllInOnePage() {
                                 }}
                               >
                                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                                  <Box sx={{ flexShrink: 0 }}>
+                                    <MemberAvatar seed={member.avatarSeed} size={32} />
+                                  </Box>
                                   <Typography variant="subtitle1">
                                     {member.name}
                                   </Typography>
@@ -379,12 +390,19 @@ export default function AllInOnePage() {
                             <CasinoIcon sx={{ fontSize: 20, color: 'primary.main' }} />
                           </Box>
                           <Box>
-                            <Typography variant="h6" gutterBottom={false}>
-                              {member.name}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              Selected Member #{index + 1}
-                            </Typography>
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                              <Box sx={{ flexShrink: 0 }}>
+                                <MemberAvatar seed={member.avatarSeed} size={32} />
+                              </Box>
+                              <Box>
+                                <Typography variant="h6" gutterBottom={false}>
+                                  {member.name}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                  Selected Member #{index + 1}
+                                </Typography>
+                              </Box>
+                            </Box>
                           </Box>
                         </Box>
                       </CardContent>

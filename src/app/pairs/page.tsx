@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useStore } from '@/store/useStore';
+import { MemberAvatar } from '@/components/MemberAvatar';
 import { 
   Box,
   Container,
@@ -27,6 +28,13 @@ export default function PairsPage() {
   const createPairs = useStore((state) => state.createPairs);
   
   const selectedGroup = groups.find(group => group.id === selectedGroupId);
+
+  // Select first group by default
+  useEffect(() => {
+    if (groups.length > 0 && !selectedGroupId) {
+      setSelectedGroupId(groups[0].id);
+    }
+  }, [groups, selectedGroupId]);
 
   const handleCreatePairs = () => {
     if (selectedGroup) {
@@ -132,6 +140,9 @@ export default function PairsPage() {
                             }}
                           >
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                              <Box sx={{ flexShrink: 0 }}>
+                                <MemberAvatar seed={member.avatarSeed} size={32} />
+                              </Box>
                               <Typography variant="subtitle1">
                                 {member.name}
                               </Typography>

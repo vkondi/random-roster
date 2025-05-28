@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useStore } from '@/store/useStore';
 import { TeamMember } from '@/types';
@@ -29,6 +29,13 @@ export default function SortPage() {
   const sortTeamMembers = useStore((state) => state.sortTeamMembers);
   
   const selectedGroupData = groups.find((g) => g.id === selectedGroup);
+
+  // Select first group by default
+  useEffect(() => {
+    if (groups.length > 0 && !selectedGroup) {
+      setSelectedGroup(groups[0].id);
+    }
+  }, [groups, selectedGroup]);
   
   const handleSort = async () => {
     if (!selectedGroupData) return;
@@ -72,9 +79,6 @@ export default function SortPage() {
                 label="Select Group"
                 onChange={(e) => setSelectedGroup(e.target.value)}
               >
-                <MenuItem value="">
-                  <em>Select a group</em>
-                </MenuItem>
                 {groups.map((group) => (
                   <MenuItem key={group.id} value={group.id}>
                     {group.name} ({group.members.length} members)
