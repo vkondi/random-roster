@@ -1,6 +1,15 @@
 # Random Roster
 
-A modern web application for managing, shuffling, and sorting team members built with Next.js, TypeScript, and Material-UI.
+Random Roster is a modern web application designed to streamline team organization and collaboration. Whether you're managing classroom activities, organizing work teams, or running group events, Random Roster helps you create fair and balanced team arrangements with just a few clicks.
+
+The application offers various randomization tools to eliminate bias in team formation and member selection, making it perfect for educators, team leaders, and event organizers who want to ensure equal participation and diverse group dynamics.
+
+Key benefits:
+- Fair and unbiased team organization
+- Quick and efficient member selection
+- Flexible group management
+- Beautiful and intuitive interface
+- Seamless user experience
 
 ## Features
 
