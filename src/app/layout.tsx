@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Navigation } from "@/components/Navigation";
 import { Providers } from "./providers";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Random Roster",
@@ -26,6 +27,13 @@ export default function RootLayout({
             </main>
           </div>
         </Providers>
+
+        {/* Cloudfare Web Analytics */}
+        <Script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={`{"token": ${process.env.CLOUDFARE_WEB_ANALYTICS_TOKEN}}`}
+        />
       </body>
     </html>
   );
