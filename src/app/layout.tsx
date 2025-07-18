@@ -29,11 +29,12 @@ export default function RootLayout({
         </Providers>
 
         {/* Cloudfare Web Analytics */}
-        <Script
+        <script
           defer
           src="https://static.cloudflareinsights.com/beacon.min.js"
           data-cf-beacon={`{"token": ${process.env.CLOUDFARE_WEB_ANALYTICS_TOKEN}}`}
-        />
+        ></script>
+        {/* End Cloudflare Web Analytics  */}
       </body>
     </html>
   );
