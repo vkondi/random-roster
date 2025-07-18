@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Navigation } from "@/components/Navigation";
 import { Providers } from "./providers";
-import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Random Roster",
