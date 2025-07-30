@@ -81,15 +81,11 @@ export default function Home() {
   const pathname = usePathname();
   const groups = useStore((state) => state.groups);
 
-  console.log("groups:", groups);
-
   useEffect(() => {
-    // Only redirect if we're on the home page and there are no groups
     if (pathname === "/" && groups.length === 0) {
-      console.log("Redirecting to /groups");
       router.push("/groups");
     }
-  }, [groups.length, router, pathname]);
+  }, [pathname, groups, router]);
 
   // Show loading state while redirecting
   if (pathname === "/" && groups.length === 0) {
