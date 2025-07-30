@@ -2,15 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-rgb: 249, 250, 251;
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
-}
+/* Let Material-UI handle the body background completely */
+/* Remove hardcoded body styles that override theme */
 
 @layer base {
   input[type='number']::-webkit-outer-spin-button,
