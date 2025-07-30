@@ -7,7 +7,27 @@ import { Box } from "@mui/material";
 
 export const metadata: Metadata = {
   title: "Random Roster",
-  description: "Team shuffling and sorting made easy",
+  description: "A modern web application designed to streamline team organization and collaboration",
+  openGraph: {
+    title: "Random Roster",
+    description: "A modern web application designed to streamline team organization and collaboration",
+    type: "website",
+    url: "https://random-roster.vercel.app/",
+    images: [
+      {
+        url: "https://random-roster.vercel.app/thumbnail.png",
+        width: 1920,
+        height: 906,
+        alt: "Random Roster",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Random Roster",
+    description: "A modern web application designed to streamline team organization and collaboration",
+    images: ["https://random-roster.vercel.app/thumbnail.png"],
+  },
 };
 
 export default function RootLayout({
