@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 import { Providers } from "./providers";
+import { Box } from "@mui/material";
 
 export const metadata: Metadata = {
   title: "Random Roster",
@@ -17,14 +19,22 @@ export default function RootLayout({
     <html lang="en" className="h-full">
       <body className="h-full antialiased">
         <Providers>
-          <div className="min-h-full flex flex-col">
+          <Box
+            sx={{
+              minHeight: '100vh',
+              display: 'flex',
+              flexDirection: 'column',
+              backgroundColor: 'background.default',
+            }}
+          >
             <Navigation />
-            <main className="flex-1">
-              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+            <Box component="main" sx={{ flex: 1 }}>
+              <Box sx={{ mx: 'auto', maxWidth: '7xl', px: { xs: 2, sm: 3, lg: 4 }, py: 4 }}>
                 {children}
-              </div>
-            </main>
-          </div>
+              </Box>
+            </Box>
+            <Footer />
+          </Box>
         </Providers>
 
         {/* Cloudfare Web Analytics */}

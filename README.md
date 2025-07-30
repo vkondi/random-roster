@@ -66,7 +66,7 @@ Key benefits:
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/vkondi/random-roster.git
    cd random-roster
    ```
 
@@ -145,4 +145,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

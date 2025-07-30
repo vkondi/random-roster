@@ -1,26 +1,26 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { useStore } from '@/store/useStore';
-import { 
+import { useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { useStore } from "@/store/useStore";
+import {
   Box,
   Container,
   Typography,
   Card,
   CardContent,
   Paper,
-} from '@mui/material';
-import { 
-  Shuffle as ShuffleIcon, 
-  Sort as SortIcon, 
+} from "@mui/material";
+import {
+  Shuffle as ShuffleIcon,
+  Sort as SortIcon,
   Group as GroupIcon,
   ArrowForward as ArrowForwardIcon,
   Casino as CasinoIcon,
-} from '@mui/icons-material';
-import { SvgIconComponent } from '@mui/icons-material';
+} from "@mui/icons-material";
+import { SvgIconComponent } from "@mui/icons-material";
 
 interface Feature {
   name: string;
@@ -32,46 +32,47 @@ interface Feature {
 
 const features: Feature[] = [
   {
-    name: 'Team Shuffler',
-    description: 'Create random groups by splitting team members equally.',
+    name: "Team Shuffler",
+    description: "Create random groups by splitting team members equally.",
     icon: ShuffleIcon,
-    href: '/shuffle',
-    color: 'primary.main',
+    href: "/shuffle",
+    color: "primary.main",
   },
   {
-    name: 'Team Sorting',
-    description: 'Sort team members randomly for fair and unbiased ordering.',
+    name: "Team Sorting",
+    description: "Sort team members randomly for fair and unbiased ordering.",
     icon: SortIcon,
-    href: '/sort',
-    color: 'primary.main',
+    href: "/sort",
+    color: "primary.main",
   },
   {
-    name: 'Create Team Pairs',
-    description: 'Create random pairs for buddy systems and pair programming.',
+    name: "Create Team Pairs",
+    description: "Create random pairs for buddy systems and pair programming.",
     icon: GroupIcon,
-    href: '/pairs',
-    color: 'primary.main',
+    href: "/pairs",
+    color: "primary.main",
   },
   {
-    name: 'Select Random Members',
-    description: 'Select random members for tasks and presentations.',
+    name: "Select Random Members",
+    description: "Select random members for tasks and presentations.",
     icon: CasinoIcon,
-    href: '/random',
-    color: 'primary.main',
+    href: "/random",
+    color: "primary.main",
   },
   {
-    name: 'Team Groups',
-    description: 'Create and manage custom groups of team members.',
+    name: "Team Groups",
+    description: "Create and manage custom groups of team members.",
     icon: GroupIcon,
-    href: '/groups',
-    color: 'primary.main',
+    href: "/groups",
+    color: "primary.main",
   },
   {
-    name: 'All-in-One',
-    description: 'Access all features in one place - shuffle, sort, pair, or select random members.',
+    name: "All-in-One",
+    description:
+      "Access all features in one place - shuffle, sort, pair, or select random members.",
     icon: ShuffleIcon,
-    href: '/all-in-one',
-    color: 'primary.main',
+    href: "/all-in-one",
+    color: "primary.main",
   },
 ];
 
@@ -81,14 +82,13 @@ export default function Home() {
   const groups = useStore((state) => state.groups);
 
   useEffect(() => {
-    // Only redirect if we're on the home page and there are no groups
-    if (pathname === '/' && groups.length === 0) {
-      router.push('/groups');
+    if (pathname === "/" && groups.length === 0) {
+      router.push("/groups");
     }
-  }, [groups.length, router, pathname]);
+  }, [pathname, groups, router]);
 
   // Show loading state while redirecting
-  if (pathname === '/' && groups.length === 0) {
+  if (pathname === "/" && groups.length === 0) {
     return null;
   }
 
@@ -96,9 +96,22 @@ export default function Home() {
     <Container maxWidth="lg" sx={{ py: 4 }}>
       <Box sx={{ mb: 4 }}>
         <Paper elevation={0} sx={{ p: 4, borderRadius: 2 }}>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 2 }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+              flexWrap: "wrap",
+              gap: 2,
+            }}
+          >
             <Box sx={{ flex: 1, minWidth: 200 }}>
-              <Typography variant="h4" component="h1" gutterBottom fontWeight="bold">
+              <Typography
+                variant="h4"
+                component="h1"
+                gutterBottom
+                fontWeight="bold"
+              >
                 Welcome to Random Roster
               </Typography>
               <Typography variant="body1" color="text.secondary">
@@ -109,7 +122,13 @@ export default function Home() {
         </Paper>
       </Box>
 
-      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1fr 1fr 1fr' }, gap: 3 }}>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "1fr 1fr 1fr" },
+          gap: 3,
+        }}
+      >
         {features.map((feature, index) => (
           <motion.div
             key={feature.name}
@@ -121,13 +140,13 @@ export default function Home() {
               component={Link}
               href={feature.href}
               sx={{
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                textDecoration: 'none',
-                transition: 'all 0.2s ease-in-out',
-                '&:hover': {
-                  transform: 'translateY(-4px)',
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                textDecoration: "none",
+                transition: "all 0.2s ease-in-out",
+                "&:hover": {
+                  transform: "translateY(-4px)",
                   boxShadow: 3,
                 },
               }}
@@ -137,11 +156,11 @@ export default function Home() {
                   sx={{
                     width: 48,
                     height: 48,
-                    borderRadius: '50%',
-                    bgcolor: 'primary.50',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
+                    borderRadius: "50%",
+                    bgcolor: "primary.50",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                     mb: 2,
                   }}
                 >
@@ -153,7 +172,15 @@ export default function Home() {
                 <Typography variant="body2" color="text.secondary" paragraph>
                   {feature.description}
                 </Typography>
-                <Box sx={{ display: 'flex', alignItems: 'center', color: 'primary.main', mt: 'auto', pt: 2 }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    color: "primary.main",
+                    mt: "auto",
+                    pt: 2,
+                  }}
+                >
                   <Typography variant="subtitle2" sx={{ mr: 1 }}>
                     Get started
                   </Typography>
@@ -169,7 +196,18 @@ export default function Home() {
         <Typography variant="h5" gutterBottom fontWeight="bold">
           Your Groups
         </Typography>
-        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1fr 1fr 1fr' }, gap: 3, mt: 1 }}>
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "1fr",
+              sm: "1fr 1fr",
+              md: "1fr 1fr 1fr",
+            },
+            gap: 3,
+            mt: 1,
+          }}
+        >
           {groups.map((group, index) => (
             <motion.div
               key={group.id}
@@ -179,26 +217,27 @@ export default function Home() {
             >
               <Card>
                 <CardContent sx={{ p: 3 }}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                     <Box
                       sx={{
                         width: 40,
                         height: 40,
-                        borderRadius: '50%',
-                        bgcolor: 'primary.50',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
+                        borderRadius: "50%",
+                        bgcolor: "primary.50",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
                       }}
                     >
-                      <GroupIcon sx={{ fontSize: 20, color: 'primary.main' }} />
+                      <GroupIcon sx={{ fontSize: 20, color: "primary.main" }} />
                     </Box>
                     <Box>
                       <Typography variant="h6" gutterBottom={false}>
                         {group.name}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        {group.members.length} {group.members.length === 1 ? 'member' : 'members'}
+                        {group.members.length}{" "}
+                        {group.members.length === 1 ? "member" : "members"}
                       </Typography>
                     </Box>
                   </Box>
