@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, FormEvent, ChangeEvent } from 'react';
+import { useState, type FormEvent, type ChangeEvent } from 'react';
 import { motion } from 'framer-motion';
 import { useStore } from '@/store/useStore';
 import { MemberList } from '@/components/MemberList';
@@ -16,7 +16,7 @@ import {
   Paper,
 } from '@mui/material';
 import { Add as AddIcon, Delete as DeleteIcon, Group as GroupIcon } from '@mui/icons-material';
-import { TeamGroup } from '@/types';
+import { type TeamGroup } from '@/types';
 
 export default function GroupsPage() {
   const [newGroupName, setNewGroupName] = useState('');

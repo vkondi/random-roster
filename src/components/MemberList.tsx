@@ -1,11 +1,11 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, ChangeEvent, KeyboardEvent } from 'react';
-import { TeamMember } from '@/types';
+import { useState, type ChangeEvent, type KeyboardEvent } from 'react';
+import { type TeamMember } from '@/types';
 import { MemberAvatar } from './MemberAvatar';
 import { Box, Paper, Typography, IconButton, TextField, Checkbox, Tooltip } from '@mui/material';
 import { Close as CloseIcon, Edit as EditIcon, Check as CheckIcon } from '@mui/icons-material';
 
-interface MemberListProps {
+type MemberListProps = {
   members: TeamMember[];
   onRemove?: (id: string) => void;
   onEdit?: (id: string, newName: string) => void;

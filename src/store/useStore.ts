@@ -1,12 +1,12 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { TeamMember, TeamGroup } from '@/types';
+import { type TeamMember, type TeamGroup } from '@/types';
 
-interface StoreState {
+type StoreState = {
   groups: TeamGroup[];
 }
 
-interface StoreActions {
+type StoreActions = {
   addGroup: (name: string) => void;
   removeGroup: (id: string) => void;
   addMemberToGroup: (groupId: string, name: string) => void;

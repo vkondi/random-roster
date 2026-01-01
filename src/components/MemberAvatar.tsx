@@ -2,7 +2,7 @@ import { createAvatar } from '@dicebear/core';
 import { funEmoji } from '@dicebear/collection';
 import Image from 'next/image';
 
-interface MemberAvatarProps {
+type MemberAvatarProps = {
   seed: string;
   size?: number;
 }

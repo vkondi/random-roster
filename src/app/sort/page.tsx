@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useStore } from '@/store/useStore';
-import { TeamMember } from '@/types';
+import { type TeamMember } from '@/types';
 import { MemberList } from '@/components/MemberList';
 import { 
   Box,

@@ -19,7 +19,7 @@ import {
   TextField,
 } from '@mui/material';
 import { Casino as CasinoIcon } from '@mui/icons-material';
-import { TeamGroup, TeamMember } from '@/types';
+import { type TeamGroup, type TeamMember } from '@/types';
 
 export default function RandomPage() {
   const [selectedGroupId, setSelectedGroupId] = useState<string>('');
@@ -91,9 +91,9 @@ export default function RandomPage() {
               type="number"
               label="Number of Members"
               value={count}
-              onChange={(e) => setCount(Math.max(1, Math.min(selectedGroup?.members.length || 1, parseInt(e.target.value) || 1)))}
+              onChange={(e) => setCount(Math.max(1, Math.min(selectedGroup?.members.length ?? 1, parseInt(e.target.value) || 1)))}
               fullWidth
-              inputProps={{ min: 1, max: selectedGroup?.members.length || 1 }}
+              inputProps={{ min: 1, max: selectedGroup?.members.length ?? 1 }}
             />
             <Button
               variant="contained"
