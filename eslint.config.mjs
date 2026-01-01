@@ -45,6 +45,8 @@ const eslintConfig = [
       "@typescript-eslint/no-unsafe-assignment": "warn",
       "@typescript-eslint/no-unsafe-call": "warn",
       "@typescript-eslint/no-unsafe-member-access": "warn",
+      "@typescript-eslint/await-thenable": "error",
+      "@typescript-eslint/require-await": "warn",
       
       // Code quality
       "@typescript-eslint/no-unused-vars": [
@@ -60,6 +62,10 @@ const eslintConfig = [
         { prefer: "type-imports", fixStyle: "inline-type-imports" }
       ],
       "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
+      "@typescript-eslint/explicit-member-accessibility": [
+        "warn",
+        { accessibility: "explicit" }
+      ],
       
       // Modern JavaScript features
       "@typescript-eslint/prefer-nullish-coalescing": "warn",
@@ -67,7 +73,6 @@ const eslintConfig = [
       "@typescript-eslint/no-unnecessary-condition": "warn",
       
       // Best practices
-      "@typescript-eslint/await-thenable": "error",
       "no-console": ["warn", { allow: ["warn", "error"] }],
       "prefer-const": "warn",
       "no-var": "error",

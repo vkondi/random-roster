@@ -110,7 +110,7 @@ export default function AllInOnePage() {
     }
   }, [groups, selectedGroupId]);
 
-  const handleAction = async () => {
+  const handleAction = () => {
     if (!selectedGroup || !selectedActivity) return;
 
     switch (selectedActivity) {
