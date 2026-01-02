@@ -62,10 +62,6 @@ const eslintConfig = [
         { prefer: "type-imports", fixStyle: "inline-type-imports" }
       ],
       "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
-      "@typescript-eslint/explicit-member-accessibility": [
-        "warn",
-        { accessibility: "explicit" }
-      ],
       
       // Modern JavaScript features
       "@typescript-eslint/prefer-nullish-coalescing": "warn",
