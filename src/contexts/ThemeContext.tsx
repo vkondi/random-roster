@@ -2,7 +2,7 @@
 
 import { createContext, useContext } from 'react';
 
-interface ThemeContextType {
+type ThemeContextType = {
   themeMode: 'light' | 'dark';
   setThemeMode: (mode: 'light' | 'dark') => void;
 }

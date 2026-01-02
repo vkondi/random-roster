@@ -1,29 +1,29 @@
-export interface TeamMember {
+export type TeamMember = {
   id: string;
   name: string;
   avatarSeed: string;
   excluded?: boolean;
 }
 
-export interface TeamGroup {
+export type TeamGroup = {
   id: string;
   name: string;
   members: TeamMember[];
   createdAt: string;
 }
 
-export interface ShuffleResult {
+export type ShuffleResult = {
   teams: TeamMember[][];
 }
 
-export interface SortResult {
+export type SortResult = {
   members: TeamMember[];
 }
 
-export interface PairResult {
+export type PairResult = {
   pairs: [TeamMember, TeamMember?][];
 }
 
-export interface RandomMemberResult {
+export type RandomMemberResult = {
   selectedMembers: TeamMember[];
 } 

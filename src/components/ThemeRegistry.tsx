@@ -17,7 +17,7 @@ export default function ThemeRegistry({ children }: { children: React.ReactNode 
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const [mode, setMode] = React.useState<'light' | 'dark'>(
     typeof localStorage !== 'undefined' 
-      ? (localStorage.getItem('theme') as 'light' | 'dark') || (prefersDarkMode ? 'dark' : 'light')
+      ? (localStorage.getItem('theme') as 'light' | 'dark' | null) ?? (prefersDarkMode ? 'dark' : 'light')
       : 'light'
   );
 

@@ -18,7 +18,7 @@ import {
   InputLabel,
 } from '@mui/material';
 import { Shuffle as ShuffleIcon, Group as GroupIcon } from '@mui/icons-material';
-import { TeamGroup, TeamMember } from '@/types';
+import { type TeamGroup, type TeamMember } from '@/types';
 
 export default function PairsPage() {
   const [selectedGroupId, setSelectedGroupId] = useState<string>('');

@@ -25,7 +25,7 @@ import {
   Group as GroupIcon,
   Casino as CasinoIcon,
 } from '@mui/icons-material';
-import { TeamMember } from '@/types';
+import { type TeamMember } from '@/types';
 
 type ActivityType = 'shuffle' | 'sort' | 'pairs' | 'random';
 
@@ -51,7 +51,7 @@ type RandomResult = {
 
 type ActivityResult = ShuffleResult | SortResult | PairsResult | RandomResult;
 
-interface ActivityOption {
+type ActivityOption = {
   value: ActivityType;
   label: string;
   icon: typeof ShuffleIcon;
@@ -110,7 +110,7 @@ export default function AllInOnePage() {
     }
   }, [groups, selectedGroupId]);
 
-  const handleAction = async () => {
+  const handleAction = () => {
     if (!selectedGroup || !selectedActivity) return;
 
     switch (selectedActivity) {
@@ -253,7 +253,7 @@ export default function AllInOnePage() {
               fullWidth
               sx={{ height: 56 }}
             >
-              {selectedActivityOption?.buttonText || 'Select an Activity'}
+              {selectedActivityOption?.buttonText ?? 'Select an Activity'}
             </Button>
           </Box>
         </Paper>

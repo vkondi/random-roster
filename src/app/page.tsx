@@ -20,9 +20,9 @@ import {
   ArrowForward as ArrowForwardIcon,
   Casino as CasinoIcon,
 } from "@mui/icons-material";
-import { SvgIconComponent } from "@mui/icons-material";
+import { type SvgIconComponent } from "@mui/icons-material";
 
-interface Feature {
+type Feature = {
   name: string;
   description: string;
   icon: SvgIconComponent;
